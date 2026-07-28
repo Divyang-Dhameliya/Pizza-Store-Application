@@ -7,3 +7,5 @@
 **/.angular/
 
 .env
+
+**/appsettings.Developement.json
