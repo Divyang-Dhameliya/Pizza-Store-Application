@@ -1,0 +1,31 @@
+.menu-container {
+  padding: 20px;
+}
+
+.pizza-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.pizza-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+}
+
+.price {
+  font-weight: bold;
+  font-size: 1.1em;
+  color: #d32f2f;
+}
+
+.stock {
+  color: orange;
+  font-size: 0.85em;
+}
+
+.error {
+  color: red;
+}
