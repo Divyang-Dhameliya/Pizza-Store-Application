@@ -1,3 +1,37 @@
-<p>
-  cart works!
-</p>
+<div class="cart-container">
+  <h2>Your Cart</h2>
+
+  <div *ngIf="items.length === 0">Your cart is empty.</div>
+
+  <table *ngIf="items.length > 0">
+    <thead>
+      <tr>
+        <th>Pizza</th>
+        <th>Unit Price</th>
+        <th>Quantity</th>
+        <th>Line Total</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of items">
+        <td>{{ item.name }}</td>
+        <td>${{ item.unitPrice.toFixed(2) }}</td>
+        <td>
+          <input type="number" min="1" [value]="item.quantity"
+                 (change)="updateQuantity(item.pizzaId, $event.target.value)">
+        </td>
+        <td>${{ (item.unitPrice * item.quantity).toFixed(2) }}</td>
+        <td><button (click)="removeItem(item.pizzaId)">Remove</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 *ngIf="items.length > 0">Total: ${{ getTotal().toFixed(2) }}</h3>
+
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <button *ngIf="items.length > 0" [disabled]="placingOrder" (click)="placeOrder()">
+    {{ placingOrder ? 'Placing Order...' : 'Place Order' }}
+  </button>
+</div>
