@@ -1,3 +1,43 @@
-<p>
-  admin works!
-</p>
+<div class="admin-container">
+  <h2>Admin — Manage Pizzas</h2>
+
+  <div class="form-section">
+    <h3>{{ isEditMode ? 'Edit Pizza' : 'Add New Pizza' }}</h3>
+    <input placeholder="Name" [(ngModel)]="formName">
+    <input placeholder="Description" [(ngModel)]="formDescription">
+    <input type="number" placeholder="Price" [(ngModel)]="formPrice">
+    <input type="number" placeholder="Stock Quantity" [(ngModel)]="formStock">
+    <button (click)="saveForm()">{{ isEditMode ? 'Update' : 'Add' }}</button>
+    <button *ngIf="isEditMode" (click)="resetForm()">Cancel</button>
+  </div>
+
+  <div *ngIf="error" class="error">{{ error }}</div>
+  <div *ngIf="loading">Loading...</div>
+
+  <table *ngIf="!loading">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th>Active</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pizza of pizzas">
+        <td>{{ pizza.name }}</td>
+        <td>{{ pizza.description }}</td>
+        <td>${{ pizza.price.toFixed(2) }}</td>
+        <td>{{ pizza.stockQuantity }}</td>
+        <td>{{ pizza.isActive ? 'Yes' : 'No' }}</td>
+        <td>
+          <button (click)="startEdit(pizza)">Edit</button>
+          <button (click)="toggleHide(pizza)">{{ pizza.isActive ? 'Hide' : 'Unhide' }}</button>
+          <button (click)="deletePizza(pizza)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
