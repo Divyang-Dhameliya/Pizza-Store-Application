@@ -60,11 +60,21 @@ export class AdminComponent implements OnInit {
 
   saveForm(): void {
     const dto = {
-      name: this.formName,
-      description: this.formDescription,
+      name: this.formName ? this.formName.trim() : '',
+      description: this.formDescription ? this.formDescription.trim() : '',
       price: this.formPrice,
       stockQuantity: this.formStock
     };
+
+    if (
+      !dto.name ||
+      !dto.description ||
+      dto.price <= 0 ||
+      dto.stockQuantity < 0
+    ) {
+      this.error = 'Please enter valid values for all fields.';
+      return;
+    }
 
     if (this.isEditMode && this.editingPizza) {
       this.pizzaService.updatePizza(this.editingPizza.pizzaId, dto).subscribe({
@@ -72,7 +82,10 @@ export class AdminComponent implements OnInit {
           this.resetForm();
           this.loadPizzas();
         },
-        error: (err) => this.error = 'Failed to update pizza.'
+        error: (err) => this.error = 'Failed to update pizza.',
+        complete: () => { 
+          this.error = "" ;
+        }
       });
     } else {
       this.pizzaService.addPizza(dto).subscribe({
@@ -80,7 +93,10 @@ export class AdminComponent implements OnInit {
           this.resetForm();
           this.loadPizzas();
         },
-        error: (err) => this.error = 'Failed to add pizza.'
+        error: (err) => this.error = 'Failed to add pizza.',
+        complete: () => { 
+          this.error = "" ;
+        }
       });
     }
   }
