@@ -1,0 +1,9 @@
+<div class="pizza-card">
+    <h3>{{ pizzaItem.name }}</h3>
+    <p>{{ pizzaItem.description }}</p>
+    <p class="price">${{ pizzaItem.price.toFixed(2) }}</p>
+    <p class="stock" *ngIf="pizzaItem.stockQuantity < 10">
+      Only {{ pizzaItem.stockQuantity }} left!
+    </p>
+    <button (click)="addToCart(pizzaItem)">Add to Cart</button>
+</div>

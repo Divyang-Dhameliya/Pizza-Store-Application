@@ -10,6 +10,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { OrderDetailsComponent } from './components/order-details/order-details.component';
 import { FormsModule } from '@angular/forms';
+import { CardComponent } from './components/card/card.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FormsModule } from '@angular/forms';
     AdminComponent,
     CartComponent,
     OrdersComponent,
-    OrderDetailsComponent
+    OrderDetailsComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,

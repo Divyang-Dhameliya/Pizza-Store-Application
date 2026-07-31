@@ -1,0 +1,17 @@
+.pizza-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+}
+
+.price {
+  font-weight: bold;
+  font-size: 1.1em;
+  color: #d32f2f;
+}
+
+.stock {
+  color: orange;
+  font-size: 0.85em;
+}

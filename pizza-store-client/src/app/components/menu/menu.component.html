@@ -5,14 +5,8 @@
   <div *ngIf="error" class="error">{{ error }}</div>
 
   <div class="pizza-grid" *ngIf="!loading && !error">
-    <div class="pizza-card" *ngFor="let pizza of pizzas">
-      <h3>{{ pizza.name }}</h3>
-      <p>{{ pizza.description }}</p>
-      <p class="price">${{ pizza.price.toFixed(2) }}</p>
-      <p class="stock" *ngIf="pizza.stockQuantity < 10">
-        Only {{ pizza.stockQuantity }} left!
-      </p>
-      <button (click)="addToCart(pizza)">Add to Cart</button>
+    <div *ngFor="let pizza of pizzas">
+      <app-card [pizzaItem]="pizza" (addToCartEvent)="addToCart($event)"></app-card>
     </div>
   </div>
 
